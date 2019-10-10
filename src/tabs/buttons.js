@@ -1,12 +1,11 @@
-import Expo from 'expo';
-import React, { Component } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-
-import { StackNavigator } from 'react-navigation';
+import React from 'react';
+import { createStackNavigator } from 'react-navigation';
 import { Icon } from 'react-native-elements';
 
 import ButtonsHome from '../views/buttons_home';
 import ButtonsDetails from '../views/buttons_detail';
+
+import config from '../config/stack';
 
 const ButtonsTabView = ({ navigation }) => (
   <ButtonsHome navigation={navigation} />
@@ -19,7 +18,7 @@ const ButtonsDetailTabView = ({ navigation }) => (
   />
 );
 
-const ButtonsTab = StackNavigator({
+const ButtonsTab = createStackNavigator({
   Buttons: {
     screen: ButtonsTabView,
     path: '/',
@@ -30,8 +29,8 @@ const ButtonsTab = StackNavigator({
           name="menu"
           size={30}
           type="entypo"
-          style={{ paddingLeft: 10 }}
-          onPress={() => navigation.navigate('DrawerOpen')}
+          containerStyle={{ marginLeft: 10 }}
+          onPress={navigation.toggleDrawer}
         />
       ),
     }),
@@ -43,6 +42,6 @@ const ButtonsTab = StackNavigator({
       title: 'Buttons Detail',
     },
   },
-});
+}, config);
 
 export default ButtonsTab;

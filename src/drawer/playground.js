@@ -1,11 +1,10 @@
-import Expo from 'expo';
 import React from 'react';
-import { StackNavigator } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation';
 import { Icon } from 'react-native-elements';
 
 import Playground from '../views/playground';
 
-const PlaygroundDrawerItem = StackNavigator({
+const PlaygroundDrawerItem = createStackNavigator({
   Playground: {
     screen: Playground,
     navigationOptions: ({ navigation }) => ({
@@ -16,7 +15,7 @@ const PlaygroundDrawerItem = StackNavigator({
           size={30}
           type="entypo"
           iconStyle={{ paddingLeft: 10 }}
-          onPress={() => navigation.navigate('DrawerOpen')}
+          onPress={navigation.toggleDrawer}
         />
       ),
     }),
@@ -31,7 +30,7 @@ PlaygroundDrawerItem.navigationOptions = {
       size={30}
       iconStyle={{
         width: 30,
-        height: 30
+        height: 30,
       }}
       type="material"
       color={tintColor}

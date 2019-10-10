@@ -1,9 +1,12 @@
-!node_modules/
+.idea
+.vscode
+.DS_Store
+web-build/
+web-report/
 
 node_modules/*
-!node_modules/react-native-elements/
-
 .expo/*
 npm-debug.*
+*.log
 
 /beta

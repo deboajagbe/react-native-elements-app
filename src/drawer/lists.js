@@ -1,16 +1,31 @@
-import Expo from 'expo';
 import React from 'react';
-import { StackNavigator } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation';
 import { Icon } from 'react-native-elements';
 
 import Lists from '../views/lists';
 
-const ListsDrawerItem = StackNavigator({
-  Playground: { screen: Lists }
-},
+import config from '../config/stack';
+
+const ListsDrawerItem = createStackNavigator(
   {
-    headerMode: 'none'
-  }
+    Playground: {
+      screen: Lists,
+
+      navigationOptions: ({ navigation }) => ({
+        title: 'Lists',
+        headerLeft: (
+          <Icon
+            name="menu"
+            size={30}
+            type="entypo"
+            iconStyle={{ paddingLeft: 10 }}
+            onPress={navigation.toggleDrawer}
+          />
+        ),
+      }),
+    },
+  },
+  config,
 );
 
 ListsDrawerItem.navigationOptions = {
@@ -21,7 +36,7 @@ ListsDrawerItem.navigationOptions = {
       size={30}
       iconStyle={{
         width: 30,
-        height: 30
+        height: 30,
       }}
       type="material"
       color={tintColor}

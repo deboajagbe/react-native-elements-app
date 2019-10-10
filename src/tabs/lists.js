@@ -1,12 +1,12 @@
-import Expo from 'expo';
-import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import React from 'react';
 
-import { StackNavigator } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation';
 import { Icon } from 'react-native-elements';
 
 import ListsHome from '../views/lists_home';
 import ListsDetails from '../views/lists_detail';
+
+import config from '../config/stack';
 
 const ListsTabView = ({ navigation }) => (
   <ListsHome banner="Lists" navigation={navigation} />
@@ -16,7 +16,7 @@ const ListsDetailTabView = ({ navigation }) => (
   <ListsDetails banner="Lists Detail" navigation={navigation} />
 );
 
-const ListsTab = StackNavigator({
+const ListsTab = createStackNavigator({
   Home: {
     screen: ListsTabView,
     path: '/',
@@ -27,8 +27,8 @@ const ListsTab = StackNavigator({
           name="menu"
           size={30}
           type="entypo"
-          style={{ paddingLeft: 10 }}
-          onPress={() => navigation.navigate('DrawerOpen')}
+          containerStyle={{ marginLeft: 10 }}
+          onPress={navigation.toggleDrawer}
         />
       ),
     }),
@@ -40,6 +40,6 @@ const ListsTab = StackNavigator({
       title: 'Lists Detail',
     },
   },
-});
+}, config);
 
 export default ListsTab;

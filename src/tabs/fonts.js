@@ -1,12 +1,12 @@
-import Expo from 'expo';
-import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import React from 'react';
 
-import { StackNavigator } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation';
 import { Icon } from 'react-native-elements';
 
 import FontsHome from '../views/fonts_home';
 import FontsDetails from '../views/fonts_detail';
+
+import config from '../config/stack';
 
 const FontsTabView = ({ navigation }) => (
   <FontsHome banner="Fonts" navigation={navigation} />
@@ -16,7 +16,7 @@ const FontsDetailTabView = ({ navigation }) => (
   <FontsDetails banner="Fonts Detail" navigation={navigation} />
 );
 
-const FontsTab = StackNavigator({
+const FontsTab = createStackNavigator({
   Home: {
     screen: FontsTabView,
     path: '/',
@@ -27,8 +27,8 @@ const FontsTab = StackNavigator({
           name="menu"
           size={30}
           type="entypo"
-          style={{ paddingLeft: 10 }}
-          onPress={() => navigation.navigate('DrawerOpen')}
+          containerStyle={{ marginLeft: 10 }}
+          onPress={navigation.toggleDrawer}
         />
       ),
     }),
@@ -40,6 +40,6 @@ const FontsTab = StackNavigator({
       title: 'Fonts Detail',
     },
   },
-});
+}, config);
 
 export default FontsTab;
